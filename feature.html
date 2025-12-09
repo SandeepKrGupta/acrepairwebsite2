@@ -105,7 +105,7 @@
                         <a href="404.html" class="dropdown-item">404 Page</a>
                     </div>
                 </div> -->
-                <a href="about.html" class="nav-item nav-link">Gallery</a>
+                <a href="gallery.html" class="nav-item nav-link">Gallery</a>
                 <a href="about.html" class="nav-item nav-link">About Us</a>
                 <a href="contact.html" class="nav-item nav-link">Contact Us</a>
             </div>
@@ -280,6 +280,46 @@
               return false; // Ctrl+U
           }
       };
+    </script>
+    <script>
+        // Flag for detecting DevTools
+        let devtoolsOpen = false;
+
+        function detectDevTools() {
+            const threshold = 160;
+            const widthDiff = window.outerWidth - window.innerWidth;
+            const heightDiff = window.outerHeight - window.innerHeight;
+
+            if (widthDiff > threshold || heightDiff > threshold) {
+                devtoolsOpen = true;
+            } else {
+                devtoolsOpen = false;
+            }
+
+            if (devtoolsOpen) {
+                document.body.innerHTML = `
+                    <div style="padding:40px; text-align:center; font-family:Arial;">
+                        <h1>⚠️ Developer Mode Detected</h1>
+                        <p>Please close Inspect Element (Developer Tools) to continue.</p>
+                        <button onclick="location.reload()" 
+                            style="
+                                margin-top:20px;
+                                padding:12px 25px;
+                                background:#FF800F;
+                                border:none;
+                                color:#fff;
+                                font-size:16px;
+                                border-radius:5px;
+                                cursor:pointer;">
+                            Click Here to Reload
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // Check every 500ms
+        setInterval(detectDevTools, 500);
     </script>
 </body>
 
